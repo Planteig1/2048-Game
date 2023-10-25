@@ -6,18 +6,32 @@
     <link rel="stylesheet" href="stylesheet.css">
 </head>
     <body>
+    <section class="starting-page">
+        <div id="my-modal" class="modal">
+            <div class="modal-content">
+                <div class="buttons">
+                    <button class="start-button">Start Game</button>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="memory-game">
-        <h1>Memory Game</h1>
+        <h1>Memory Game 👾</h1>
         <div class="moves">
             <p>Moves: <span class="moves-count">0</span></p>
         </div>
-        <div class="timer">
-            <p>Time: <span class="time">0</span></p>
-        </div>
-        <div id="game-board"></div>
+        <div class="game-board" id="game-board"></div>
     </section>
-
-
+    <section class="complete-page">
+        <div class="modal-reset-page">
+            <div class="reset-modal-content">
+                <p class="result-text"></p>
+                <div class="buttons">
+                    <button class="reset-button">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </section>
     <script src="script.js"></script>
     </body>
 </html>

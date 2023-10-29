@@ -10,6 +10,9 @@ let landingPageModal = document.querySelector(".modal");
 let restartPageModal = document.querySelector(".modal-reset-page");
 let resetButton = document.querySelector(".reset-button");
 let resultText = document.querySelector(".result-text");
+let amountOfMoves = 0;
+let amountOfCardsCorrect = 0;
+
 
 /* USE IF YOU WANT TO CHEAT
 let cheatButton = document.querySelector(".win-button");
@@ -21,7 +24,6 @@ cheatButton.addEventListener("click", () => {
     }
 });
 */
-
 
 startGameButton.addEventListener("click", () => {
     shuffleCards()
@@ -35,7 +37,6 @@ resetButton.addEventListener("click", () => {
     startGame()
     restartPageModal.style.display = "none";
 });
-
 
 
 function shuffleCards() {
@@ -66,6 +67,7 @@ function startGame() {
            card.innerHTML = currentCard;
            card.addEventListener("click", selectCard);
            board.appendChild(card);
+           console.log(row)
         }
     }
     setTimeout(hideCards, 1000)
@@ -94,8 +96,9 @@ function selectCard() {
             card2Selected.classList.toggle("card-hidden");
             card2Selected.classList.toggle("card-flip");
 
-            moveCounter.innerText = parseInt(moveCounter.innerText) + 1;
-            setTimeout(checkMatch, 1000)
+            amountOfMoves += 1;
+            moveCounter.innerText = amountOfMoves
+            setTimeout(checkMatch, 1000);
         }
 
     }
@@ -105,6 +108,7 @@ function checkMatch () {
     if (card1Selected.innerText === card2Selected.innerText) {
         card1Selected = null;
         card2Selected = null;
+        amountOfCardsCorrect += 2;
 
     } else {
         card1Selected.classList.toggle("card-hidden");
@@ -114,7 +118,7 @@ function checkMatch () {
         card1Selected = null;
         card2Selected = null;
     }
-    if(document.querySelectorAll(".card-hidden").length === 0) {
+    if(amountOfCardsCorrect === (rows * columns)) {
         restartPageModal.style.display = "flex";
         resultText.innerText = `Congratulations, you won in ${moveCounter.innerText} moves! 🏆`
     }
@@ -123,6 +127,7 @@ function checkMatch () {
 function resetGame() {
     const cards = document.querySelectorAll(".card");
     cards.forEach(card => card.remove());
-    moveCounter.innerText = 0;
-}
+    amountOfMoves = 0;
+    moveCounter.innerText = amountOfMoves
 
+}
